@@ -21,10 +21,13 @@ public class Main {
             switch (selected) {
                 case 1:
                     Farming.init();
+                     break;
                 case 2:
                     Crafting.init();
+                    break;
                 case 3:
                     Inventory.init();
+                    break;
             }
 
         }

@@ -10,6 +10,7 @@ public class Farming {
         System.out.println("2. Wood");
 
         Farm(Items.Cobblestone, 1, 1);
+        Farm(Items.Wood, 1, 2);
 
     }
 
