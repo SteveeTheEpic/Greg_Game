@@ -1,21 +1,26 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Farming {
 
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final int selected = scanner.nextInt();
+    private static ArrayList<Item> Farm_List = new ArrayList<>();
 
-    public static void init() {
+    public static void run() {
         System.out.println("1. Cobblestone");
         System.out.println("2. Wood");
 
-        Farm(Items.Cobblestone, 1, 1);
-        Farm(Items.Wood, 1, 2);
+        Scanner scanner = new Scanner(System.in);
+        int selected = scanner.nextInt();
 
+        Farm_List.get(selected - 1).addQuantity(1);
     }
 
-    public static void Farm(Item item, int quantity, int id) {
-        if (selected == id)
+    public static void init() {
+        Farm_List.add(Items.Cobblestone);
+        Farm_List.add(Items.Wood);
+    }
+
+    public static void Farm(Item item, int quantity) {
             item.addQuantity(quantity);
     }
 

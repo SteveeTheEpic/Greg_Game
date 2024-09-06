@@ -15,6 +15,11 @@ public class Crafting {
             Craft craft = Craftings.craftings.get(id);
 
             //  do the crafty thingy
+            craft.craft();
+
+
+        } else {
+            System.out.println("Crafting recipe doesn't exist!");
         }
     }
 }

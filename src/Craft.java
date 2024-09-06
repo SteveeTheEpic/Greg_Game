@@ -23,8 +23,6 @@ public class Craft {
         Ingredients.forEach((n) -> {
             var Ing_c = Ingredients_Count.get(Ingredients.indexOf(n));
 
-            System.out.println(Ingredients);
-
             if ((n.quantity - Ing_c) >= 0) {
                 n.subQuantity(Ing_c);
             } else {

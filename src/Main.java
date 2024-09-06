@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Items.init();
+        Items.init_craft();
+        Farming.init();
 
         System.out.println("Welcome to Greg Game\n(aka GG)");
 
@@ -20,7 +22,7 @@ public class Main {
             selected = scanner.nextInt();
             switch (selected) {
                 case 1:
-                    Farming.init();
+                    Farming.run();
                      break;
                 case 2:
                     Crafting.init();

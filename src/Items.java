@@ -13,4 +13,8 @@ public class Items {
         Items_List.add(Wood);
         Items_List.add(Furnace);
     }
+
+    public static void init_craft() {
+        Craftings.craftings.add(new Craft("Furnace").addItem(Cobblestone, 8).addProduct(Furnace, 1));
+    }
 }
