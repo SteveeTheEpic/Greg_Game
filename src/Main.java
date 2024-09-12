@@ -1,3 +1,7 @@
+import Craft.Crafting;
+import Items.Items;
+import Machine.Machines;
+
 import java.util.Scanner;
 
 public class Main {
@@ -5,6 +9,7 @@ public class Main {
         Items.init();
         Items.init_craft();
         Farming.init();
+        Machines.init();
 
         System.out.println("Welcome to Greg Game\n(aka GG)");
 

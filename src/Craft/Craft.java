@@ -1,3 +1,8 @@
+package Craft;
+
+import Items.Item;
+import Machine.Machine;
+
 import java.util.ArrayList;
 
 public class Craft {
@@ -8,8 +13,11 @@ public class Craft {
     ArrayList<Integer> Products_Count = new ArrayList<>();
 
 
+    public Machine required;
+    public boolean machine = true;
     public boolean refund = false;
     public int last;
+
 
 
     public Craft(String id) {
@@ -23,16 +31,23 @@ public class Craft {
         Ingredients.forEach((n) -> {
             var Ing_c = Ingredients_Count.get(Ingredients.indexOf(n));
 
-            if ((n.quantity - Ing_c) >= 0) {
+
+            // Checks if the Items.Item is Craftable or the Machine.Machine is available
+            if ((n.quantity - Ing_c) >= 0 && machine) {
                 n.subQuantity(Ing_c);
-            } else {
+            } else if ((n.quantity - Ing_c) >= 0){
                 System.out.println("Insufficient " + n.name);
                 refund = true;
                 last = Ingredients.indexOf(n);
+            } else if (!machine) {
+                System.out.println(required.getName() + " is required!");
             }
         });
 
-        if (refund) {
+        if (refund || !machine) {
+
+            // refunds every item used in the recipe
+            // if the craft is unavailable
             for (int i = 0; i < last; i++) {
 
                 Ingredients.get(i).addQuantity(Ingredients_Count.get(i));
@@ -40,6 +55,8 @@ public class Craft {
             }
 
             refund = false;
+
+            // adds the products
         } else {
             Products.forEach((n) -> {
                 n.addQuantity(Products_Count.get(Products.indexOf(n)));
@@ -49,9 +66,9 @@ public class Craft {
         return this;
     }
 
-    public Craft addItem(Item item, int quanity) {
+    public Craft addItem(Item item, int quantity) {
         Ingredients.add(item);
-        Ingredients_Count.add(quanity);
+        Ingredients_Count.add(quantity);
         return this;
     }
 
@@ -60,5 +77,16 @@ public class Craft {
         Products_Count.add(quantity);
         return this;
     }
+
+    public Craft requireMachine(Machine machine) {
+        required = machine;
+
+        if (machine.getAcquired())
+            this.machine = true;
+        else
+            this.machine = false;
+
+        return this;
+    };
 
 }

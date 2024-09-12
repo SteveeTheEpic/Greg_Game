@@ -1,3 +1,5 @@
+import Items.Items;
+
 public class Inventory {
 
     public static void init() {

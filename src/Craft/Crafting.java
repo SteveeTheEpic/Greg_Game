@@ -1,3 +1,5 @@
+package Craft;
+
 import java.util.Scanner;
 
 public class Crafting {
@@ -19,7 +21,7 @@ public class Crafting {
 
 
         } else {
-            System.out.println("Crafting recipe doesn't exist!");
+            System.out.println("Craft.Crafting recipe doesn't exist!");
         }
     }
 }

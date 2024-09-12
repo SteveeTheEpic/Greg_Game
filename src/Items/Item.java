@@ -1,9 +1,11 @@
+package Items;
+
 import java.util.ArrayList;
 
 public class Item {
 
-    String name;
-    int quantity;
+    public String name;
+    public int quantity;
 
     public ArrayList<Item> Items_List = new ArrayList<Item>();
 

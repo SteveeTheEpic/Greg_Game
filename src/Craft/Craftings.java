@@ -1,3 +1,5 @@
+package Craft;
+
 import java.util.ArrayList;
 
 public class Craftings {
