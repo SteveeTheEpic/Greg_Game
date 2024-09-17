@@ -21,6 +21,7 @@ public class Main {
             System.out.println("1. Farm");
             System.out.println("2. Craft");
             System.out.println("3. Inventory");
+            System.out.println("4. Quit");
             System.out.println("Choice: ");
             Scanner scanner = new Scanner(System.in);
             selected = scanner.nextInt();
@@ -34,6 +35,9 @@ public class Main {
                 case 3:
                     Inventory.init();
                     break;
+                case 4:
+                    enabled = false;
+                    System.out.println("Bye see you next time");
             }
 
         }
