@@ -12,6 +12,7 @@ public class Item {
     public Item(String name) {
         this.name = name;
         this.quantity = 0;
+        Items.Items_List.add(this);
     }
 
     public void addQuantity(int Quantity) {

@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Items.init();
         Items.init_craft();
         Farming.init();
         Machines.init();

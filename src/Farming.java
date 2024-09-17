@@ -19,10 +19,10 @@ public class Farming {
         Farm_List.get(selected - 1).addQuantity(Farm_List_C.get(selected - 1));
     }
 
+
+    // Items and count must be added in a row
     public static void init() {
-        Farm_List.add(Items.Cobblestone);
-        Farm_List_C.add(1);
-        Farm_List.add(Items.Wood);
-        Farm_List_C.add(1);
+        Farm_List.add(Items.Cobblestone);    Farm_List_C.add(1);
+        Farm_List.add(Items.Wood);           Farm_List_C.add(1);
     }
 }
