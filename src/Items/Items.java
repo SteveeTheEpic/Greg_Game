@@ -17,4 +17,9 @@ public class Items {
     public static void init_craft() {
         Craftings.craftings.add(new Craft("Furnace").addItem(Cobblestone, 8).addProduct(Furnace, 1).requireMachine(Machines.Crafting_table));
     }
+
+    public static void init_farm() {
+        Cobblestone.setFarm(1);
+        Wood.setFarm(1);
+    }
 }

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Items.init_craft();
+        Items.init_farm();
         Farming.init();
         Machines.init();
 
@@ -39,7 +40,6 @@ public class Main {
                     enabled = false;
                     System.out.println("Bye see you next time");
             }
-
         }
     }
 }

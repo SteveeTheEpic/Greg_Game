@@ -35,7 +35,7 @@ public class Craft {
             // Checks if the Items.Item is Craftable or the Machine.Machine is available
             if ((n.quantity - Ing_c) >= 0 && machine) {
                 n.subQuantity(Ing_c);
-            } else if ((n.quantity - Ing_c) >= 0){
+            } else if ((n.quantity - Ing_c) < 0){
                 System.out.println("Insufficient " + n.name);
                 refund = true;
                 last = Ingredients.indexOf(n);
