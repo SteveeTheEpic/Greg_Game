@@ -11,17 +11,11 @@ public class Crafting {
         Scanner scanner = new Scanner(System.in);
         String selected = scanner.next().toLowerCase();
 
-        if (Craftings.crafting_ids.contains(selected)) {
-            int id = Craftings.crafting_ids.indexOf(selected);
-
-            Craft craft = Craftings.craftings.get(id);
-
-            //  do the crafty thingy
-            craft.craft();
-
+        if (Craftings.crafts.containsKey(selected)) {
+            Craftings.crafts.get(selected).craft();
 
         } else {
-            System.out.println("Craft.Crafting recipe doesn't exist!");
+            System.out.println("Crafting recipe doesn't exist!");
         }
     }
 }

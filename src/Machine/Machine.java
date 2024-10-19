@@ -31,6 +31,8 @@ public class Machine {
         this.count = count;
         return this;
     }
+
+    // added for "multithreading"
     public Machine addCount(int count) {
         this.count += count;
         return this;

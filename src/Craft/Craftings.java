@@ -1,10 +1,9 @@
 package Craft;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Craftings {
 
-    public static ArrayList<String> crafting_ids = new ArrayList<>();
-    public static ArrayList<Craft> craftings = new ArrayList<>();
+    public static HashMap<String, Craft> crafts = new HashMap<>();
 
 }

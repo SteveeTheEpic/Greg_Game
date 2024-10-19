@@ -12,25 +12,21 @@ public class Craft {
     ArrayList<Item> Products = new ArrayList<>();
     ArrayList<Integer> Products_Count = new ArrayList<>();
 
-
     public Machine required;
     public boolean machine = true;
     public boolean refund = false;
     public int last;
 
 
-
     public Craft(String id) {
-        Craftings.crafting_ids.add(id.toLowerCase());
-        Craftings.craftings.add(this);
+        Craftings.crafts.put(id.toLowerCase(), this);
     }
 
 
-    public Craft craft() {
+    public void craft() {
 
         Ingredients.forEach((n) -> {
             var Ing_c = Ingredients_Count.get(Ingredients.indexOf(n));
-
 
             // Checks if the Items.Item is Craftable or the Machine.Machine is available
             if ((n.quantity - Ing_c) >= 0 && machine) {
@@ -45,25 +41,19 @@ public class Craft {
         });
 
         if (refund || !machine) {
-
             // refunds every item used in the recipe
             // if the craft is unavailable
             for (int i = 0; i < last; i++) {
-
                 Ingredients.get(i).addQuantity(Ingredients_Count.get(i));
-
             }
 
             refund = false;
-
             // adds the products
         } else {
             Products.forEach((n) -> {
                 n.addQuantity(Products_Count.get(Products.indexOf(n)));
             });
         }
-
-        return this;
     }
 
     public Craft addItem(Item item, int quantity) {
