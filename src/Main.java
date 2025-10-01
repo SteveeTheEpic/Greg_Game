@@ -1,6 +1,7 @@
 import Craft.Crafting;
 import Items.Items;
 import Machine.Machines;
+import Utils.Inventory;
 
 import java.util.Scanner;
 
@@ -8,8 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Items.init_craft();
         Items.init_farm();
-        Farming.init();
-        Machines.init();
 
         System.out.println("Welcome to Greg Game\n(aka GG)");
 
@@ -19,6 +18,8 @@ public class Main {
         boolean enabled = true;
 
         while (enabled) {
+            Items.update();
+
             System.out.println("1. Farm");
             System.out.println("2. Craft");
             System.out.println("3. Inventory");

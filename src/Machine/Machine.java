@@ -1,44 +1,37 @@
 package Machine;
 
-public class Machine {
+import Items.Item;
 
-    String name;
-    Boolean acquired;
-    Integer count;
+import static Machine.Machines.machines;
 
+public class Machine extends Item {
 
     public Machine(String name) {
-        this.name = name;
-        this.acquired = false;
-        this.count = 0;
+        super(name);
+        machines.add(this);
     }
 
-    public Machine setAcquired(Boolean state) {
-        this.acquired = state;
-        return this;
-    }
-
-    public Boolean getAcquired() {
-        return this.acquired;
+    public Boolean isAvailable() {
+        return this.quantity > 0;
     }
     public String getName() {
         return this.name;
     }
     public Integer getCount() {
-        return this.count;
+        return this.quantity;
     }
     public Machine setCount(int count) {
-        this.count = count;
+        this.quantity = count;
         return this;
     }
 
     // added for "multithreading"
     public Machine addCount(int count) {
-        this.count += count;
+        this.quantity += count;
         return this;
     }
     public Machine subCount(int count) {
-        this.count -= count;
+        this.quantity -= count;
         return this;
     }
 }

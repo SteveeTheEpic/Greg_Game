@@ -1,30 +1,36 @@
 import Items.Item;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Items.Items.*;
+import static Utils.Crafts.crafts;
+import static Utils.Inventory.getMatches;
+import static Utils.Inventory.showChange;
 
 public class Farming {
 
-    private static HashMap<Integer, Item> FarmList = new HashMap<>();
-
     public static void run() {
-        FarmList.forEach((key, item) -> {
-            System.out.println(key + ". " + item.name);
-        });
 
+        System.out.print("Choice: ");
         Scanner scanner = new Scanner(System.in);
-        int selected = scanner.nextInt();
+        String selected = scanner.next();
 
-        FarmList.get(selected).addQuantity(FarmList.get(selected).farm);
+        ArrayList<Item> temp = Items_List;
 
-        System.out.println("Farmed: " + FarmList.get(selected).name);
-    }
+        ArrayList<String> possible = getMatches(FarmList, selected);
+        if (possible.size() > 1) {
+            System.out.println("All possibilities have been listed: ");
+            for (String s : possible) {
+                System.out.println(s);
+            }
+            System.out.println("Try again.");
+        } else if (FarmList.containsKey(selected) || possible.size() == 1) {
+            FarmList.get(possible.get(0)).addQuantity(FarmList.get(possible.get(0)).farm);
 
-    // First the id for farming then the Item
-    public static void init() {
-        FarmList.put(1, Cobblestone);
-        FarmList.put(2, Wood);
+        } else {
+            System.out.println("This cannot be farmed!\n(or doesn't exist)");
+        }
+        showChange(temp, Items_List);
     }
 }
