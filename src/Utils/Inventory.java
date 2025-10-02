@@ -55,7 +55,7 @@ public class Inventory {
             if (!(item instanceof Tool tool)) continue;
             if (!(after.get(after.indexOf(tool)) instanceof Tool tool1)) continue;
             if (tool.getTier() - tool1.getTier() > 0) {
-                System.out.printf("%s's Tier:  %d -> %d", tool.name, tool.getTier(), after.get(after.indexOf(tool)).quantity);
+                System.out.printf("%s's Tier:  %d -> %d", tool.name, tool.getTier(), tool1.tier);
             }
         }
     }
