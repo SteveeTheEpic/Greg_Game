@@ -1,5 +1,7 @@
 package Craft;
 
+import Utils.Sort;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ public class Crafting {
         String selected = scanner.next().toLowerCase();
 
         ArrayList<String> possible = getMatches(crafts, selected);
-
+        possible.sort(new Sort.SortByNameLength());
         if (possible.size() > 1) {
             System.out.println("All possibilities have been listed: ");
             for (String s : possible) {

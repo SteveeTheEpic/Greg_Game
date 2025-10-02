@@ -1,25 +1,22 @@
 import Craft.Crafting;
-import Items.Items;
-import Machine.Machines;
+import Items.*;
 import Utils.Inventory;
 
 import java.util.Scanner;
 
+import static Utils.Inventory.showChanged;
+
 public class Main {
     public static void main(String[] args) {
-        Items.init_craft();
-        Items.init_farm();
-
         System.out.println("Welcome to Greg Game\n(aka GG)");
 
         System.out.println();
 
         int selected;
         boolean enabled = true;
+        Items.update(); // Fixes a bug
 
         while (enabled) {
-            Items.update();
-
             System.out.println("1. Farm");
             System.out.println("2. Craft");
             System.out.println("3. Inventory");
@@ -39,8 +36,11 @@ public class Main {
                     break;
                 case 4:
                     enabled = false;
-                    System.out.println("Bye see you next time");
+                    System.out.println("Bye!\n see you next time");
             }
+            showChanged();
+            Items.update();
+
         }
     }
 }

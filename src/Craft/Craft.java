@@ -6,7 +6,7 @@ import Utils.Crafts;
 
 import java.util.ArrayList;
 
-import static Utils.Inventory.showChange;
+import static Machine.Machines.None;
 
 public class Craft {
 
@@ -15,7 +15,7 @@ public class Craft {
     ArrayList<Item> Products = new ArrayList<>();
     ArrayList<Integer> Products_Count = new ArrayList<>();
 
-    public Machine required;
+    public Machine required = None;
     public boolean machine = true;
     public boolean refund = false;
 
@@ -27,15 +27,16 @@ public class Craft {
 
     public void craft() {
 
-        ArrayList<Item> temp = Ingredients;
-        Ingredients.forEach((n) -> {
-            var Ing_c = Ingredients_Count.get(Ingredients.indexOf(n));
+        machine = required.isAvailable();
+
+        Ingredients.forEach((item) -> {
+            var Ing_c = Ingredients_Count.get(Ingredients.indexOf(item));
 
             // Checks if the Items.Item is Craftable or the Machine is available
-            if ((n.quantity - Ing_c) >= 0 && machine) {
-                n.subQuantity(Ing_c);
-            } else if ((n.quantity - Ing_c) < 0){
-                System.out.println("Insufficient " + n.name);
+            if ((item.quantity - Ing_c) >= 0 && machine) {
+                item.subQuantity(Ing_c);
+            } else if ((item.quantity - Ing_c) < 0){
+                System.out.println("Insufficient " + item.name);
                 refund = true;
             } else if (!machine) {
                 System.out.println(required.getName() + " is required!");
@@ -53,8 +54,6 @@ public class Craft {
                 n.addQuantity(Products_Count.get(Products.indexOf(n)));
             });
         }
-
-        showChange(temp, Ingredients);
     }
 
     public Craft addItem(Item item, int quantity) {
@@ -71,13 +70,7 @@ public class Craft {
 
     public Craft requireMachine(Machine machine) {
         required = machine;
-
-        if (machine.isAvailable())
-            this.machine = true;
-        else
-            this.machine = false;
-
         return this;
-    };
+    }
 
 }

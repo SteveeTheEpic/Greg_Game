@@ -8,14 +8,18 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static Items.Items.Items_List;
+
 public class Inventory {
 
     public static void init() {
-        Items.Items_List.forEach((item) -> {
-            if (item.showing && !(item instanceof Tool)) {
-                System.out.println(item.name + ": " + item.quantity);
-            } else if (item.showing && (item instanceof Tool tool)){
-                System.out.printf("%s's Tier: %d", tool.name, tool.tier);
+        Items_List.forEach((item) -> {
+            if (item.showing && (item instanceof Tool tool)) {
+                System.out.printf("%s's Tier: %d\n", tool.name, tool.tier);
+            } else {
+                if (item.showing) {
+                    System.out.println(item.name + ": " + item.quantity);
+                }
             }
         });
     }
@@ -44,18 +48,17 @@ public class Inventory {
         return possible;
     }
 
-    public static void showChange(ArrayList<Item> before, ArrayList<Item> after) {
-        for (Item item : before) {
-            if (item.quantity - after.get(after.indexOf(item)).quantity > 0) {
-                System.out.printf("%s:  %d -> %d", item.name, item.quantity, after.get(after.indexOf(item)).quantity);
+    public static void showChanged() {
+        for (Item item : Items_List) {
+            if (item.prev_quantity - item.quantity != 0) {
+                System.out.printf("%s:  %d -> %d\n", item.name, item.prev_quantity, item.quantity);
             }
         }
 
-        for (Item item : before) {
+        for (Item item : Items_List) {
             if (!(item instanceof Tool tool)) continue;
-            if (!(after.get(after.indexOf(tool)) instanceof Tool tool1)) continue;
-            if (tool.getTier() - tool1.getTier() > 0) {
-                System.out.printf("%s's Tier:  %d -> %d", tool.name, tool.getTier(), tool1.tier);
+            if (tool.prev_tier - tool.tier != 0) {
+                System.out.printf("%s's Tier:  %d -> %d\n", tool.name, tool.prev_tier, tool.tier);
             }
         }
     }

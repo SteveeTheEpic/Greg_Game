@@ -4,13 +4,15 @@ public class Item {
 
     public String name;
     public boolean showing;
+    public int prev_quantity;
     public int quantity;
-    public int farm;
+    public boolean farmable = false;
+    public int requiredTier;
 
     public Item(String name) {
         this.name = name;
         this.quantity = 0;
-        this.farm = 0;
+        this.requiredTier = 0;
         this.showing = false;
         Items.Items_List.add(this);
     }
@@ -18,18 +20,19 @@ public class Item {
     public Item(String name, boolean showing) {
         this.name = name;
         this.quantity = 0;
-        this.farm = 0;
+        this.requiredTier = 0;
         this.showing = showing;
         Items.Items_List.add(this);
     }
 
-    public Item(String name, boolean showing, int farm) {
+    public Item(String name, boolean showing, int requiresTier) {
         this.name = name;
         this.quantity = 0;
-        this.farm = farm;
+        this.farmable = true;
+        this.requiredTier = requiresTier;
         this.showing = showing;
         Items.Items_List.add(this);
-
+        Items.FarmList.put(this.name.toLowerCase(), this);
     }
 
     public void addQuantity(int Quantity) {
@@ -40,8 +43,8 @@ public class Item {
         quantity -= Quantity;
     }
 
-    public void setFarm(int count) {
-        this.farm = count;
+    public void setRequiredTier(int count) {
+        this.requiredTier = count;
     }
 
     public void setShowing(boolean showing) {
@@ -49,6 +52,7 @@ public class Item {
     }
 
     public void update() {
+        prev_quantity = quantity;
         if (quantity != 0 || showing) showing = true;
     }
 }
