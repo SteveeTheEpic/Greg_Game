@@ -37,6 +37,7 @@ public class Craft {
                 item.subQuantity(Ing_c);
             } else if ((item.quantity - Ing_c) < 0){
                 System.out.println("Insufficient " + item.name);
+                item.subQuantity(Ing_c);
                 refund = true;
             } else if (!machine) {
                 System.out.println(required.getName() + " is required!");
